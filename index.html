@@ -12,14 +12,16 @@
     <script type="text/javascript" src="lib/build-monitor.js"></script>
     <script type="text/javascript" src="lib/config.js"></script>
     <script type="text/javascript" src="lib/ext/jit.js"></script>
+    <script type="text/javascript" src="lib/build-graph.js"></script>
 
     <script type="text/javascript">
       $(function () {
-
+        $('build-graph').css('height', document.height + 'px');
+        graph = buildGraph();
       });
     </script>
 </head>
 <body>
-
+    <div id="build-graph"/>
 </body>
 </html>
