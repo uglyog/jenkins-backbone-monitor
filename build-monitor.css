@@ -8,6 +8,21 @@ body {
   background-color: #2f4f4f;
 }
 
+#build-graph-container {
+}
+
 #build-graph {
   height: 100%;
+  position:relative;
+  margin:auto;
+  overflow:hidden;
+}
+
+#status {
+  height: 30px;
+  text-align: center;
+}
+
+#status span {
+  padding: 5px;
 }

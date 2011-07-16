@@ -5,23 +5,40 @@
 
     <link href="build-monitor.css" rel="stylesheet">
 
+    <script type="text/javascript" src="lib/ext/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="lib/ext/underscore.js"></script>
     <script type="text/javascript" src="lib/ext/underscore.string.js"></script>
     <script type="text/javascript" src="lib/ext/backbone.js"></script>
-    <script type="text/javascript" src="lib/ext/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="lib/build-monitor.js"></script>
     <script type="text/javascript" src="lib/config.js"></script>
     <script type="text/javascript" src="lib/ext/jit.js"></script>
-    <script type="text/javascript" src="lib/build-graph.js"></script>
 
     <script type="text/javascript">
       $(function () {
-        $('build-graph').css('height', document.height + 'px');
-        graph = buildGraph();
+        $('#build-graph-container').height($(window).height() - $('#status').height());
+        var builds = new Builds();
+        var statusView = new StatusView({
+            el: $('#status')[0],
+            collection: builds
+        });
+        var graphView = new GraphView({
+            el: $('#build-graph-container')[0],
+            collection: builds
+        });
+        var update = function () {
+            builds.fetch();
+            statusView.render();
+            graphView.render();
+        };
+        update();
+        setInterval(update, 10000);
       });
     </script>
 </head>
 <body>
-    <div id="build-graph"/>
+    <div id="build-graph-container">
+        <div id="build-graph"></div>
+    </div>
+    <div id="status"></div>
 </body>
 </html>
